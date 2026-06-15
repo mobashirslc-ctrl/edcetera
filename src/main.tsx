@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import App from "./App"; // পাথ ঠিক করা হয়েছে
+import app from "./app.tsx"; // পাথ ঠিক করা হয়েছে
 import "./styles/index.css";
 
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById("root")!).render(<app />);

@@ -1,6 +1,8 @@
 import { Search, MapPin, ChevronDown, Wallet, ShoppingBag, Heart, BookOpen, PawPrint, TrendingUp, Phone, MessageCircle, Globe, DollarSign } from 'lucide-react';
-
+import React, { useState } from 'react'; // যদি useState আগে না থাকে
+import AuthModal from './AuthModal';    // এটা যোগ করুন
 export default function App() {
+  const [showAuth, setShowAuth] = useState(false);
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -37,17 +39,36 @@ export default function App() {
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
-            <button className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-2.5 rounded-lg font-medium transition-colors shadow-md hover:shadow-lg">
-              বিক্রি করুন / Post Ad
-            </button>
-            <div className="hidden lg:flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-lg border border-primary/20">
-              <Wallet className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-primary">৳1,500</span>
-            </div>
-          </div>
-        </div>
-      </header>
+          <header className="w-full bg-white border-b border-border shadow-sm">
+  <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+    
+    {/* লোগো বা অন্যান্য বাম পাশের এলিমেন্ট এখানে থাকবে */}
+    <div className="logo">My App</div>
+
+    {/* আপনার দেওয়া ডান পাশের অংশটুকু এখানে বসবে */}
+    <div className="flex items-center gap-3">
+      {/* Post Ad Button */}
+      <button className="bg-accent hover:bg-accent/90 text-accent-foreground px-6 py-2.5 rounded-lg font-medium transition-colors shadow-md hover:shadow-lg">
+        বিক্রি করুন / Post Ad
+      </button>
+      
+      {/* Login Button (আলাদা করা হয়েছে) */}
+      <button 
+        onClick={() => setShowAuth(true)} 
+        className="px-4 py-2.5 rounded-lg font-medium text-foreground transition-colors border border-border hover:bg-gray-50"
+      >
+        লগইন
+      </button>
+
+      {/* Wallet Balance */}
+      <div className="hidden lg:flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-lg border border-primary/20">
+        <Wallet className="w-5 h-5 text-primary" />
+        <span className="text-sm font-medium text-primary">৳1,500</span>
+      </div>
+    </div>
+
+  </div>
+</header>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary via-primary to-primary/90 text-white py-20">
@@ -514,7 +535,7 @@ export default function App() {
           </div>
         </div>
       </section>
-
+{showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
       {/* Footer */}
       <footer className="bg-primary text-white py-12">
         <div className="max-w-7xl mx-auto px-4">
